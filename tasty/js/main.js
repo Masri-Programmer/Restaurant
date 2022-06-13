@@ -1,4 +1,4 @@
-fetch('https://jsonplaceholder.typicode.com/menu')
+fetch(' https://mhmdmasri2022.herokuapp.com/menu')
   .then(response => response.json())
   .then(json => console.log(json))
 ;(function () {

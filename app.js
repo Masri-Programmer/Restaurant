@@ -6,9 +6,6 @@ app.use(cors())
 const excelToJson = require('convert-excel-to-json');
 
 
-
-
-
 // use the express-static middleware
 app.use(express.static("public"))
 
