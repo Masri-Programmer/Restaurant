@@ -1,7 +1,28 @@
 fetch(' https://mhmdmasri2022.herokuapp.com/menu')
   .then(response => response.json())
-  .then(json => console.log(json))
-;(function () {
+  .then(json => {
+    maincontainer=document.getElementById('maincontainer');
+	console.log(json.menu);
+	var OriginalContent= `<img src="[IMG]" class="img-responsive" alt=" Restaurant Bootstrap Website Template byMasri-Programmer">
+							<h3>[TITLE]</h3>
+							<span class="fh5co-price">$20<sup>.50</sup></span>
+							<p>[DESCRIPTION]</p>
+							
+							`;
+			json.menu.forEach(element=> {
+				var currentContent=OriginalContent;
+				currentContent=OriginalContent.replace('[TITLE]',element["A"])
+				
+				var div=document.createElement('div');
+				div.innerHTML=  currentContent;
+				maincontainer.appendChild(div);
+
+			})
+  })
+  
+
+  
+	;(function () {
 	
 	'use strict';
 
