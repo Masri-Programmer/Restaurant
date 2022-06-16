@@ -3,16 +3,19 @@ fetch(' https://mhmdmasri2022.herokuapp.com/menu')
   .then(json => {
     maincontainer=document.getElementById('maincontainer');
 	console.log(json.menu);
-	var OriginalContent= `<img src="[IMG]" class="img-responsive" alt=" Restaurant Bootstrap Website Template byMasri-Programmer">
+	var OriginalContent= `
+	                      <img src="[IMG]" class="img-responsive">
 							<h3>[TITLE]</h3>
-							<span class="fh5co-price">$20<sup>.50</sup></span>
+							<span class="fh5co-price">[PRICE]<sup>.</sup></span>
 							<p>[DESCRIPTION]</p>
 							
 							`;
 			json.menu.forEach(element=> {
 				var currentContent=OriginalContent;
-				currentContent=OriginalContent.replace('[TITLE]',element["A"])
-				
+				currentContent=OriginalContent.replace('[IMG]',element["A"])
+				currentContent=OriginalContent.replace('[TITLE]',element["B"])
+				currentContent=OriginalContent.replace('[PRICE]',element["C"])
+				currentContent=OriginalContent.replace('[DESCRIPTION]',element["D"])
 				var div=document.createElement('div');
 				div.innerHTML=  currentContent;
 				maincontainer.appendChild(div);
