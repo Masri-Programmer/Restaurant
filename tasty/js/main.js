@@ -6,16 +6,13 @@ fetch(' https://mhmdmasri2022.herokuapp.com/menu')
 	var OriginalContent= `
 	                      <img src="[IMG]" class="img-responsive">
 							<h3>[TITLE]</h3>
-							<span class="fh5co-price">[PRICE]<sup>.</sup></span>
+							<span class="fh5co-price">$[PRICE]<sup>[DECIMAL]</sup></span>
 							<p>[DESCRIPTION]</p>
-							
 							`;
 			json.menu.forEach(element=> {
 				var currentContent=OriginalContent;
-				currentContent=OriginalContent.replace('[IMG]',element["A"])
-				currentContent=OriginalContent.replace('[TITLE]',element["B"])
-				currentContent=OriginalContent.replace('[PRICE]',element["C"])
-				currentContent=OriginalContent.replace('[DESCRIPTION]',element["D"])
+				currentContent=OriginalContent.replace('[IMG]',element["A"]).replace('[TITLE]',element["B"]).replace('[PRICE]',element["C"]).replace('[DESCRIPTION]',element["E"]).replace('[DECIMAL]',element["D"])
+				
 				var div=document.createElement('div');
 				var div2=document.createElement('div');
 				div.className='col-md-3 col-sm-6 col-xs-6 col-xxs-12 fh5co-item-wrap">';
