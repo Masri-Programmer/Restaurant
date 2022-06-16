@@ -17,7 +17,12 @@ fetch(' https://mhmdmasri2022.herokuapp.com/menu')
 				currentContent=OriginalContent.replace('[PRICE]',element["C"])
 				currentContent=OriginalContent.replace('[DESCRIPTION]',element["D"])
 				var div=document.createElement('div');
-				div.innerHTML=  currentContent;
+				var div2=document.createElement('div');
+				div.className='col-md-3 col-sm-6 col-xs-6 col-xxs-12 fh5co-item-wrap">';
+				div2.className='fh5co-item animate-box">';
+				div.innerHTML= currentContent;
+				div2.innerHTML= div.innerHTML;
+				div.appendChild(div2);
 				maincontainer.appendChild(div);
 
 			})
