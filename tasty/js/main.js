@@ -6,7 +6,7 @@ fetch(' https://mhmdmasri2022.herokuapp.com/menu')
 	var OriginalContent= `
 	                      <img src="[IMG]" class="img-responsive">
 							<h3>[TITLE]</h3>
-							<span class="fh5co-price">$[PRICE]<sup>[DECIMAL]</sup></span>
+							<span class="fh5co-price">$[PRICE].<sup>[DECIMAL]</sup></span>
 							<p>[DESCRIPTION]</p>
 							`;
 			json.menu.forEach(element=> {
@@ -26,6 +26,31 @@ fetch(' https://mhmdmasri2022.herokuapp.com/menu')
   })
   
 
+  function postEmail(){
+    let cName=document.getElementById("name").value;
+    let cEmail=document.getElementById("email").value;
+    let date=document.getElementById("datetime").value;
+    let message=document.getElementById("message").value;
+    let NoOfPeople=document.getElementById("select1").value;
+
+
+fetch("https://mhmdmasri2022.herokuapp.com/send",{
+    method: "POST",   
+    headers:{
+        'Accept':'application/json',
+        'Content-Type':'application/json'
+            },
+
+    body: JSON.stringify(
+        {
+            "name":cName,
+            "email":cEmail,
+            "dateAndTime":date,
+            "message":message,
+            "NoOfPeople":NoOfPeople
+        })
+});
+}
   
 	;(function () {
 	
