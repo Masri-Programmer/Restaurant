@@ -25,32 +25,53 @@ fetch(' https://mhmdmasri2022.herokuapp.com/menu')
 			})
   })
   
+  fetch(" https://mhmdmasri2022.herokuapp.com/gallery")
+    .then(response=>response.json())
+    .then(data=>{
+        var galleryContainer=document.getElementById("galleryContainer");
 
-  function postEmail(){
-    let cName=document.getElementById("name").value;
-    let cEmail=document.getElementById("email").value;
-    let date=document.getElementById("datetime").value;
-    let message=document.getElementById("message").value;
-    let NoOfPeople=document.getElementById("select1").value;
+        var Originaldiv=`
+		 style="background-image: url([IMG]);" data-trigger="zoomerang"
+    `
+
+        data.Services.forEach(element => {
+            var currentdiv=Originaldiv;
+			currentContent=OriginalContent.replace('[IMG]',element["A"]).replace('[TITLE]',element["B"]).replace('[PRICE]',element["C"]).replace('[DESCRIPTION]',element["E"]).replace('[DECIMAL]',element["D"])
+            var div=document.createElement("div");
+			var div2=document.createElement("div");
+            div.className="fh5co-bg-img ";
+            div.innerHTML=currentdiv;
+			div2.className="col-md-3 col-sm-3 fh5co-gallery_item";
+			div2.innerHTML=div.innerHTML.html;
+			galleryContainer.appendChild(div2);
+        });
+    })
+
+//   function postEmail(){
+//     let cName=document.getElementById("name").value;
+//     let cEmail=document.getElementById("email").value;
+//     let date=document.getElementById("datetime").value;
+//     let message=document.getElementById("message").value;
+//     let NoOfPeople=document.getElementById("select1").value;
 
 
-fetch("https://mhmdmasri2022.herokuapp.com/send",{
-    method: "POST",   
-    headers:{
-        'Accept':'application/json',
-        'Content-Type':'application/json'
-            },
+// fetch("https://mhmdmasri2022.herokuapp.com/send",{
+//     method: "POST",   
+//     headers:{
+//         'Accept':'application/json',
+//         'Content-Type':'application/json'
+//             },
 
-    body: JSON.stringify(
-        {
-            "name":cName,
-            "email":cEmail,
-            "dateAndTime":date,
-            "message":message,
-            "NoOfPeople":NoOfPeople
-        })
-});
-}
+//     body: JSON.stringify(
+//         {
+//             "name":cName,
+//             "email":cEmail,
+//             "dateAndTime":date,
+//             "message":message,
+//             "NoOfPeople":NoOfPeople
+//         })
+// });
+// }
   
 	;(function () {
 	
