@@ -7,7 +7,11 @@ app.use(cors());
 const path=require('path');
 var bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: false }))
-
+//.env require dotenv
+const buf = Buffer.from('BASIC=basic')
+const config = dotenv.parse(buf) // will return an object
+console.log(typeof config, config)
+const path = require("path"); require( 'dotenv' ).config({ path: path.resolve(__dirname, '.env') })
 // parse application/json
 // app.use(bodyParser.json())
   
@@ -45,40 +49,40 @@ app.get("/events", function (req, res) {
   res.send(result)
 })
 
-// app.post("/send", (req, res) => {
+app.post("/send", (req, res) => {
 
-// let transporter = nodemailer.createTransport({
-//   service: 'gmail',
-//   auth: {
-//     type: 'OAuth2',
-//     user: process.env.MAIL_USERNAME,
-//     pass: process.env.MAIL_PASSWORD,
-//     clientId: process.env.OAUTH_CLIENTID,
-//     clientSecret: process.env.OAUTH_CLIENT_SECRET,
-//     refreshToken: process.env.OAUTH_REFRESH_TOKEN
-//   }
-// });
-// let mailOptions = {
-//   from: "webtraining1998@gmail.com",
-//   to: "masri_mohamad@protonmail.com",
-//   subject: 'Nodemailer Project',
-//   html: `<h1>Name: ${req.body.name}</h1>
-//          <p>Email: ${req.body.email}</p>
-//          <p>Message: ${req.body.message}</p>
-//          <p>Date-Time: ${req.body.dateAndTime}</p>
-//          <p>Number of People: ${req.body.NoOfPeople}</p>
-//           `
-// };
+let transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    type: 'OAuth2',
+    user: process.env.MAIL_USERNAME,
+    pass: process.env.MAIL_PASSWORD,
+    clientId: process.env.OAUTH_CLIENTID,
+    clientSecret: process.env.OAUTH_CLIENT_SECRET,
+    refreshToken: process.env.OAUTH_REFRESH_TOKEN
+  }
+});
+let mailOptions = {
+  from: "webtraining1998@gmail.com",
+  to: "72030367@students.liu.edu.lb",
+  subject: 'Nodemailer Project',
+  html: `<h1>Name: ${req.body.name}</h1>
+         <p>Email: ${req.body.email}</p>
+         <p>Message: ${req.body.message}</p>
+         <p>Date-Time: ${req.body.dateAndTime}</p>
+         <p>Number of People: ${req.body.NoOfPeople}</p>
+          `
+};
 
-// transporter.sendMail(mailOptions, function(err, data) {
-//   if (err) {
-//     console.log("Error " + err);
-//   } else {
-//     console.log("Email sent successfully");
-//   }
-// });
-// res.end();
-// })
+transporter.sendMail(mailOptions, function(err, data) {
+  if (err) {
+    console.log("Error " + err);
+  } else {
+    console.log("Email sent successfully");
+  }
+});
+res.end();
+})
 // start the server listening for requests
 app.listen(process.env.PORT || 3000, 
 	() => console.log("Server is running..."));
