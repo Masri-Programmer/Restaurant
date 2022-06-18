@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
   
 
 // use the express-static middleware
-app.use(express.static("/tasty"))
+app.use(express.static("public"))
 
 // define the first route
 
@@ -28,19 +28,22 @@ app.get("/menu", function (req, res) {
 })
   res.send(result)
 })
+
+
+
 app.post("/send", (req, res) => {
-  let transporter = nodemailer.createTransport({
-    host: 'masri_mohamad@protonmail.com',
-    port: 465,
-    secure: true,
-    auth: {
-      user: process.env.MAIL_USERNAME,
-      pass: process.env.MAIL_PASSWORD,
-      clientId: process.env.OAUTH_CLIENTID,
-      clientSecret: process.env.OAUTH_CLIENT_SECRET,
-      refreshToken: process.env.OAUTH_REFRESH_TOKEN
-    }
-  });
+
+let transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    type: 'OAuth2',
+    user: process.env.MAIL_USERNAME,
+    pass: process.env.MAIL_PASSWORD,
+    clientId: process.env.OAUTH_CLIENTID,
+    clientSecret: process.env.OAUTH_CLIENT_SECRET,
+    refreshToken: process.env.OAUTH_REFRESH_TOKEN
+  }
+});
 let mailOptions = {
   from: "webtraining1998@gmail.com",
   to: "masri_mohamad@protonmail.com",
