@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
   
 
 // use the express-static middleware
-app.use(express.static("public"))
+app.use(express.static("/tasty"))
 
 // define the first route
 
